@@ -22,9 +22,9 @@ inputs:
 
 runs:
   using: 'composite'
-  shell: bash
   steps:
     - name: Send Notification via Curl
+      shell: bash
       run: |
         echo "Sending notification to ${{ inputs.webhook_url }}"
         curl -s -X POST "${{ inputs.webhook_url }}" \
