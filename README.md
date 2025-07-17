@@ -7,18 +7,19 @@ A simple, fast, GitHub Action by [HookFlo](https://hookflo.com) that sends JSON 
 ## 🚀 Features
 - ✅ **Minimal Setup** — Just URL, secret token, and optional JSON payload.
 - ✅ **Flexible** — Send any arbitrary JSON data.
-- ✅ **Secure** — Secret token header (`X-Secret-Token`) for endpoint authentication.
+- ✅ **Secure** — Secret token header (`x-webhook-secret`) for endpoint authentication.
 - ✅ **Lightweight** — No Docker dependencies; optimized for speed.
 
 ---
 
 ## 📦 Inputs
 
-| Name           | Description                                                    | Required | Example                                      |
-|----------------|----------------------------------------------------------------|----------|----------------------------------------------|
-| `webhook_url`  | Full endpoint URL to receive the POST request.                 | ✅ Yes   | `https://your.endpoint.com/webhook`          |
-| `secret_token` | Secret token sent in `X-Secret-Token` header.                  | ✅ Yes   | `super-secret-token-123`                     |
-| `payload`      | Optional JSON string as the request body.                      | ❌ No    | `{"event":"build_failed","status":"error"}`  |
+| Name            | Description                                             | Required |
+|-----------------|---------------------------------------------------------|----------|
+| `webhook_url`   | Target endpoint URL.                                    | ✅ Yes   |
+| `webhook_id`     | Value for the `x-webhook-id` header.                     | ✅ Yes   |
+| `webhook_secret` | Value for the `x-webhook-secret` header.                 | ✅ Yes   |
+| `payload`       | Optional JSON string as request body.                   | ❌ No    |
 
 ---
 
@@ -29,11 +30,12 @@ A simple, fast, GitHub Action by [HookFlo](https://hookflo.com) that sends JSON 
   uses: your-org/hookflo-notify-action@v1
   with:
     webhook_url: ${{ secrets.HOOKFLO_URL }}
-    secret_token: ${{ secrets.HOOKFLO_TOKEN }}
+    webhook_id: ${{ secrets.WEBHOOK_ID }}
+    webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
     payload: |
       {
         "event": "deployment_failed",
-        "status": "${{ job.status }}",
         "repository": "${{ github.repository }}",
+        "branch": "${{ github.ref }}",
         "timestamp": "${{ github.run_id }}"
       }
