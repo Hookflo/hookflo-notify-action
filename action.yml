@@ -1,0 +1,30 @@
+name: 'HookFlo Notify Action'
+description: 'A simple and Quick, production ready GitHub Action to send JSON alerts and notifications via POST requests to Slack or email services, logging endpoints, and more. '
+author: 'HookFlo'
+
+inputs:
+  webhook_url:
+    description: 'Target endpoint URL where notifications should be delivered.'
+    required: true
+  secret_token:
+    description: 'Secret token to be included in the X-Secret-Token header for authentication.'
+    required: true
+  payload:
+    description: 'Optional JSON string to send as the request body.'
+    required: false
+    default: '{}'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Send Notification via Curl
+      run: |
+        echo "Sending notification to ${{ inputs.webhook_url }}"
+        curl -s -X POST "${{ inputs.webhook_url }}" \
+             -H "Content-Type: application/json" \
+             -H "X-Secret-Token: ${{ inputs.secret_token }}" \
+             -d '${{ inputs.payload }}'
+
+branding:
+  icon: 'send'
+  color: 'purple'
