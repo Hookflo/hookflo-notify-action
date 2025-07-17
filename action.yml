@@ -1,5 +1,5 @@
 name: 'HookFlo Notify Action'
-description: 'A simple and quick, production-ready GitHub Action to send JSON alerts and notifications via POST requests to Slack, email services, logging endpoints, and more.'
+description: 'Simple, production ready GitHub Action to send JSON alerts via POST to Slack, email, logging, and more.'
 author: 'HookFlo'
 
 inputs:
@@ -22,6 +22,7 @@ inputs:
 
 runs:
   using: 'composite'
+  shell: bash
   steps:
     - name: Send Notification via Curl
       run: |
