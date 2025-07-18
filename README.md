@@ -48,7 +48,7 @@ A lightweight GitHub Action by [**HookFlo**](https://hookflo.com) to send JSON n
 
 ```yaml
 - name: Send Notification via HookFlo
-  uses: hookflo/hookflo-notify-action@v1
+  uses: hookflo/hookflo-notify-action@v1.4
   with:
     webhook_url: ${{ secrets.HOOKFLO_URL }}
     webhook_id: ${{ secrets.WEBHOOK_ID }}
