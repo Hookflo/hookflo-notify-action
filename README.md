@@ -19,7 +19,7 @@ A lightweight GitHub Action by [**HookFlo**](https://hookflo.com) to send JSON n
 
 - ✅ **Minimal Setup** — Just URL, token, and payload.
 - ✅ **Flexible JSON Payloads** — Send any event data.
-- ✅ **Secure Headers** — `x-webhook-secret` and `x-webhook-id` included.
+- ✅ **Secure Headers** — `x-webhook-token` and `x-webhook-id` included.
 - ✅ **Zero Dependencies** — Fast, Docker-free execution.
 
 ---
@@ -30,7 +30,7 @@ A lightweight GitHub Action by [**HookFlo**](https://hookflo.com) to send JSON n
 |-------------------|---------------------------------------------------|----------|
 | `webhook_url`     | Your Webhook URL from HookFlo.                    | ✅ Yes   |
 | `webhook_id`      | Webhook ID used in `x-webhook-id` header.         | ✅ Yes   |
-| `webhook_secret`  | Secret token used in `x-webhook-secret` header.   | ✅ Yes   |
+| `webhook_secret`  | Secret token used in `x-webhook-token` header.   | ✅ Yes   |
 | `payload`         | Optional JSON payload to send as request body.    | ❌ No    |
 
 ---
@@ -38,7 +38,7 @@ A lightweight GitHub Action by [**HookFlo**](https://hookflo.com) to send JSON n
 ## 🛠️ Setup Instructions
 
 1. **[Sign up on HookFlo](https://hookflo.com)**
-2. **Create a Webhook** — Copy your Webhook URL, ID, and Secret.
+2. **Create a Custom Webhook** — Copy your Webhook URL, ID, and Secret.
 3. **Set Up Templates** — Customize Slack or Email notifications in your dashboard.
 4. **Monitor Logs** — View delivery history and debug from HookFlo's real-time dashboard.
 
@@ -48,7 +48,7 @@ A lightweight GitHub Action by [**HookFlo**](https://hookflo.com) to send JSON n
 
 ```yaml
 - name: Send Notification via HookFlo
-  uses: hookflo/hookflo-notify-action@v1.4
+  uses: hookflo/hookflo-notify-action@v1.5
   with:
     webhook_url: ${{ secrets.HOOKFLO_URL }}
     webhook_id: ${{ secrets.WEBHOOK_ID }}

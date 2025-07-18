@@ -12,7 +12,7 @@ inputs:
     required: true
 
   webhook_secret:
-    description: 'Header value to be sent as x-webhook-secret.'
+    description: 'Header value to be sent as x-webhook-token.'
     required: true
 
   payload:
@@ -30,7 +30,7 @@ runs:
         curl -s -X POST "${{ inputs.webhook_url }}" \
              -H "Content-Type: application/json" \
              -H "x-webhook-id: ${{ inputs.webhook_id }}" \
-             -H "x-webhook-secret: ${{ inputs.webhook_secret }}" \
+             -H "x-webhook-token: ${{ inputs.webhook_secret }}" \
              -d '${{ inputs.payload }}'
 
 branding:
