@@ -34,5 +34,5 @@ runs:
              -d '${{ inputs.payload }}'
 
 branding:
-  icon: 'send'
+  icon: 'bell'
   color: 'purple'
